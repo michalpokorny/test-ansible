@@ -1,0 +1,17 @@
+---
+  - name: remove nginx mainline repo
+    apt_repository: repo='deb http://nginx.org/packages/mainline/ubuntu/ trusty nginx' state=absent
+
+  - name: add nginx-repo-key
+    apt_key:
+      keyserver: keyserver.ubuntu.com
+      id: ABF5BD827BD9BF62
+      state: present
+
+  - name: add nginx stable repository
+    apt_repository:
+      repo: deb http://nginx.org/packages/ubuntu/ trusty nginx
+      update_cache: yes
+
+  - name: install nginx
+    action: apt name=nginx update_cache=yes state=latest
