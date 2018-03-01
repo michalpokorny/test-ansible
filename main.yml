@@ -5,6 +5,3 @@
   roles:
     - php7
     - nginx
-
-  template:
-    - src=index.php.j2 dest=/var/www/nginx-default/index.php

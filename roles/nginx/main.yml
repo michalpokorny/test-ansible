@@ -20,4 +20,5 @@
     action: user name=ubuntu groups="www-data" append=yes
 
   - name: Add index.php with template
-  
+    template:
+    - src=index.php.j2 dest=/var/www/nginx-default/index.php
