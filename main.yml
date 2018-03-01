@@ -1,5 +1,5 @@
 ---
-- hosts: 772.s.optimizer.ms
+- hosts: localhost
   become: True
 
   roles:
