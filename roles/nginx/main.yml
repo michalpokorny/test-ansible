@@ -15,3 +15,9 @@
 
   - name: install nginx
     action: apt name=nginx update_cache=yes state=latest
+
+  - name: Add Users ubuntu to www-data
+    action: user name=ubuntu groups="www-data" append=yes
+
+  - name: Add index.php with template
+  
