@@ -1,0 +1,6 @@
+---
+- hosts: 772.s.optimizer.ms
+  become: True
+
+  roles:
+    - { role: php7 }

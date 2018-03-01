@@ -1,0 +1,4 @@
+- name: Update apt repositories cache and install php7 package
+  apt:
+    name: php7.0
+    update_cache: yes
