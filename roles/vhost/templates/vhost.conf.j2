@@ -1,0 +1,27 @@
+# {{ ansible_managed }}
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name     {{ vhost_name }};
+    root            /var/www/{{ vhost_name }};
+    index           index.php;
+    access_log      /var/log/nginx/{{ vhost_name }}-access.log;
+    error_log       /var/log/nginx/{{ vhost_name }}-error.log;
+
+    location / {
+        try_files $uri $uri/ index.php;
+    }
+
+    location ~ \.php$ {
+      include fastcgi_params;
+      fastcgi_intercept_errors on;
+      fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+      fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+        }
+
+        location ~ /\.ht {
+            deny all;
+        }
+
+}

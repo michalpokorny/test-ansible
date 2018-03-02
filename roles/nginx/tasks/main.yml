@@ -16,19 +16,28 @@
   - name: install nginx
     action: apt name=nginx update_cache=yes state=latest
 
-  - name: write nginx.conf
+  - name: Replace nginx config file
+    action: template src=default.conf.j2 dest=/etc/nginx/conf.d/default.conf
+
+  - name: Replace nginx config file
     action: template src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
-    notify:
-      - restart nginx
 
   - name: Add Users ubuntu to www-data
     action: user name=ubuntu groups="www-data" append=yes
 
-  - name: Add index.php with template
-    template:
-    - src=index.php.j2 dest=/var/www/nginx-default/index.php
+  - name: Create sites-avalaible folder
+    file:
+      path: /etc/nginx/sites-avalaible
+      recurse: yes
+      state: directory
+      mode: 0755
 
-  - name: Start NGiNX
-    service:
-      name: nginx
-      state: started
+  - name: Create sites-enabled folder
+    file:
+      path: /etc/nginx/sites-enabled
+      recurse: yes
+      state: directory
+      mode: 0755
+
+#- name: Add index.php with template
+#    action: template src=index.php.j2 dest=/var/www/nginx-default/index.php

@@ -1,7 +1,9 @@
 ---
 - hosts: webservers
   become: True
+  remote_user: ubuntu
 
   roles:
     - { role: php7, tags: [ 'php7'] }
     - { role: nginx, tags: [ 'nginx'] }
+    - { role: vhost, tags: [ 'vhost'] }

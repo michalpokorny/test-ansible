@@ -1,0 +1,23 @@
+---
+- name: Configure vhost
+  template:
+    src: vhost.conf.j2
+    dest: /etc/nginx/sites-avalaible/{{ vhost_name }}.conf
+    dest: /etc/nginx/sites-enabled/{{ vhost_name }}.conf
+    owner: ubuntu
+    group: www-data
+  notify:
+    - Reload Nginx
+
+- name: create directory for vhost
+  file:
+    path: /var/www/{{ vhost_name }}
+    recurse: yes
+    state: directory
+    owner: ubuntu
+    group: www-data
+
+- name: Copy index.php
+  action: template src=index.php.j2 dest=/var/www/{{ vhost_name }}/index.php
+  notify:
+    - Reload Nginx
