@@ -16,9 +16,19 @@
   - name: install nginx
     action: apt name=nginx update_cache=yes state=latest
 
+  - name: write nginx.conf
+    action: template src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+    notify:
+      - restart nginx
+
   - name: Add Users ubuntu to www-data
     action: user name=ubuntu groups="www-data" append=yes
 
   - name: Add index.php with template
     template:
     - src=index.php.j2 dest=/var/www/nginx-default/index.php
+
+  - name: Start NGiNX
+    service:
+      name: nginx
+      state: started

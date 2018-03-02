@@ -2,3 +2,20 @@
   apt:
     name: php7.0
     update_cache: yes
+
+- name: install packages
+  action: apt name={{ item }}
+  with_items:
+   - php7.0-curl
+   - php7.0-cli
+   - php7.0-mbstring
+   - apache2-utils
+   - git
+   - php7.0-dev
+   - build-essential
+   - php7.0-pgsql
+   - php7.0-json
+   - libgd3
+   - php7.0-gd
+   - php7.0-odbc
+   - php7.0-xml

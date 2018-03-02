@@ -1,0 +1,5 @@
+michaltest ansible_ssh_host=ec2-52-59-112-40.eu-central-1.compute.amazonaws.com ansible_ssh_user=ubuntu
+
+
+[webservers]
+michaltest
