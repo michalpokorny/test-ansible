@@ -3,5 +3,5 @@
   become: True
 
   roles:
-    - php7
-    - nginx
+    - { role: php7, tags: [ 'php7'] }
+    - { role: nginx, tags: [ 'nginx'] }
