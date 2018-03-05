@@ -1,0 +1,2 @@
+letsencrypt_domains: ['179.s.optimizer.ms']
+letsencrypt_default_ca: 'https://acme-v01.api.letsencrypt.org'

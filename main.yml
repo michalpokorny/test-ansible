@@ -3,7 +3,13 @@
   become: True
   remote_user: ubuntu
 
+  vars_prompt:
+    - name: "vhost_name"
+      prompt: "Whats your vhost name"
+      private: no
+
   roles:
     - { role: php7, tags: [ 'php7'] }
     - { role: nginx, tags: [ 'nginx'] }
     - { role: vhost, tags: [ 'vhost'] }
+    - { role: thefinn93.letsencrypt, tags: [ 'letsencrypt'] }
